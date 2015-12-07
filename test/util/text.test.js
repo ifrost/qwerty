@@ -16,7 +16,7 @@ describe('TextUtil', function(){
 
     it('supports DOS EOL', function() {
         var lines = TextUtil.splitLines('line1\r\nline2');
-        chai.assert.lengthOf(lines, 2);;
+        chai.assert.lengthOf(lines, 2);
     });
 
 });
