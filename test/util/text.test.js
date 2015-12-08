@@ -1,6 +1,6 @@
 var chai = require('chai');
 
-var TextUtil = require('../../lib/util/text');
+var TextUtil = require('util/text');
 
 describe('TextUtil', function(){
 

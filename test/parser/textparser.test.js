@@ -1,5 +1,5 @@
 var chai = require('chai');
-var TextParser = require('../../lib/parser/textparser');
+var TextParser = require('parser/textparser');
 
 describe('TextParser', function(){
 
