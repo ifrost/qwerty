@@ -1,0 +1,24 @@
+{
+  "name": "qwerty",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive"
+  },
+  "author": "Piotr Jamroz <pm.jamroz@gmail.com> (https://about.me/piotr.jamroz)",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "gulp": "^3.9.0",
+    "gulp-shell": "^0.5.1",
+    "gulp-symlink": "^2.1.3",
+    "istanbul": "^0.4.1",
+    "mocha": "^2.3.4",
+    "protoplast": "file:..\\protoplast",
+    "sinon": "^1.17.2"
+  },
+  "dependencies": {
+    "lodash": "^3.10.1"
+  }
+}
