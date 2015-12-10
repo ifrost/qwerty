@@ -6,7 +6,7 @@ var chai = require('chai'),
     Page = require('data/page'),
     BlueprintBuilder = require('data/blueprintbuilder');
 
-describe('Typewriter', function() {
+describe.only('Typewriter', function() {
 
     var typewriter, builder;
 
@@ -43,6 +43,74 @@ describe('Typewriter', function() {
             {type: 'newpage'},
             {type: 'goto', x: 0, y: 0},
             {type: 'text', text: 'line'}
+        ]);
+    });
+
+    it('Creates correct number of pages', function() {
+
+        var blueprint = builder
+            .page().row().column()
+            .page().row().column()
+            .page().row().column().blueprint;
+
+        var commands = typewriter.process(blueprint);
+
+        assertCommands(commands, [
+            {type: 'newpage'},
+            {type: 'goto', x: 0, y: 0},
+            {type: 'newpage'},
+            {type: 'goto', x: 0, y: 0},
+            {type: 'newpage'},
+            {type: 'goto', x: 0, y: 0}
+        ]);
+
+    });
+
+    it('Creates commands with multiple lines', function() {
+
+        var blueprint = builder
+            .page().row().column().line('line1').line('line2').line('line3')
+            .page().row().column().line('line4')
+            .page().row().column().line('line5').blueprint;
+
+        var commands = typewriter.process(blueprint);
+
+        assertCommands(commands, [
+            {type: 'newpage'},
+            {type: 'goto', x: 0, y: 0},
+            {type: 'text', text: 'line1'},
+            {type: 'newline'},
+            {type: 'text', text: 'line2'},
+            {type: 'newline'},
+            {type: 'text', text: 'line3'},
+
+            {type: 'newpage'},
+            {type: 'goto', x: 0, y: 0},
+            {type: 'text', text: 'line4'},
+
+            {type: 'newpage'},
+            {type: 'goto', x: 0, y: 0},
+            {type: 'text', text: 'line5'}
+        ]);
+    });
+
+    it('Creates commands for multiple columns', function() {
+
+        var blueprint = builder
+            .page().row()
+                .column().line('lineA1').line('lineA2')
+                .column().line('lineB1').blueprint;
+
+        var commands = typewriter.process(blueprint);
+
+        assertCommands(commands, [
+            {type: 'newpage'},
+            {type: 'goto', x: 0, y: 0},
+            {type: 'text', text: 'lineA1'},
+            {type: 'newline'},
+            {type: 'text', text: 'lineA2'},
+            {type: 'goto', x: 10, y: 0},
+            {type: 'text', text: 'lineB1'}
         ]);
     });
 
