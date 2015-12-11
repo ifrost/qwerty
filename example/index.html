@@ -1,0 +1,27 @@
+<html>
+
+    <body>
+
+
+        <div id="pdf-preview-iframe-container" class="to-the-bottom" style="display:block"></div>
+
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="../dist/qwerty.js"></script>
+        <script>
+
+            var suite = Qwerty.TextSuite.create();
+            var text = "test\ntest";
+
+            document.getElementById('pdf-preview-iframe-container').innerHTML = '<p>Loading preview...</p><embed id="pdf-preview-iframe" style="height: 100%; width: 100%; display:block"  type="application/pdf"></embed>';
+
+            suite.generatePdf(text, null, function(result){
+                $("#pdf-preview-iframe-container p").remove();
+                $("#pdf-preview-iframe").attr('src', result.url).css('display', 'block');
+            });
+
+
+        </script>
+
+    </body>
+
+</html>
