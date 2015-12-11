@@ -19,7 +19,7 @@ describe('TextInterpreter', function() {
         ];
 
         var config = Config.create();
-        config.characterPerLine = 5;
+        config.charactersPerLine = 5;
         config.linesPerPage = 3;
 
         var blueprint = inter.process(tokens, config);

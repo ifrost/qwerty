@@ -114,7 +114,7 @@ describe('Typewriter', function() {
         ]);
     });
 
-    it.only('Creates commands for multiple rows', function() {
+    it('Creates commands for multiple rows', function() {
 
         var blueprint = builder
             .page()
