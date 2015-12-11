@@ -6,7 +6,7 @@ var chai = require('chai'),
     Page = require('data/page'),
     BlueprintBuilder = require('data/blueprintbuilder');
 
-describe.only('Typewriter', function() {
+describe('Typewriter', function() {
 
     var typewriter, builder;
 
@@ -112,6 +112,25 @@ describe.only('Typewriter', function() {
             {type: 'goto', x: 10, y: 0},
             {type: 'text', text: 'lineB1'}
         ]);
+    });
+
+    it.only('Creates commands for multiple rows', function() {
+
+        var blueprint = builder
+            .page()
+                .row().column().line('line1')
+                .row().column().line('line2').blueprint;
+
+        var commands = typewriter.process(blueprint);
+
+        assertCommands(commands, [
+            {type: 'newpage'},
+            {type: 'goto', x: 0, y: 0},
+            {type: 'text', text: 'line1'},
+            {type: 'newline'},
+            {type: 'text', text: 'line2'}
+        ])
+
     });
 
 });
