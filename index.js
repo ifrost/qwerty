@@ -5,4 +5,4 @@ var Qwerty = {
 };
 
 global.Qwerty = Qwerty;
-module.exports = Qwerty
+module.exports = Qwerty;
